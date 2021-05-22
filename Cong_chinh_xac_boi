@@ -1,25 +1,22 @@
 #include<stdio.h>
 #include<math.h>
 
-int w,t,a[50],b[50],c[50],n;
+int w,t,a[50],b[50],c[50];
 
 int nhap(){
 	
 	printf("nhap w: ");
 	 scanf("%d",&w);
 	printf("nhap t: ");
-	 scanf("%d",&t);
-	printf("nhap so phan tu co trong mang: ");
-	 scanf("%d",&n);
-	
+	 scanf("%d",&t);	
 	printf("\nCac Phan tu cua a: ");
-	for(int i=0;i<n;i++){
+	for(int i=0;i<4;i++){
 		scanf("%d",&a[i]);
 			printf("%d, ",a[i]);
 	}
 
 	printf("\nCac Phan tu cua b: ");
-	for(int i=0;i<n;i++){
+	for(int i=0;i<4;i++){
 		scanf("%d",&b[i]);
 		printf("%d, ",b[i]);
 	}
