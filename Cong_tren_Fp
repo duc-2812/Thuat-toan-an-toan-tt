@@ -26,7 +26,7 @@ void nhap()
     }
 }
 
-void thuatToan1()
+void CongTrenFp()
 { // tim (Ep,c)
     m = log(p) / log(2) + 1;
     t = (m / w) + 1;
@@ -98,5 +98,5 @@ int main()
 {
     printf("\n\t=================");
     nhap();
-    thuatToan1();
+    CongTrenFp();
 }
