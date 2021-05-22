@@ -96,7 +96,7 @@ void CongTrenFp()
 }
 int main()
 {
-    printf("\n\t=================");
+    printf("\n\t================");
     nhap();
     CongTrenFp();
 }
