@@ -11,7 +11,7 @@ public class thuattoan1 {
         int b= input.nextInt();
        int d,x,y,x1,x2,y1,y2,q,r;
        if(b == 0){
-           d=a;      x=1;    y=0;
+           d=a;     x=1;    y=0;
             System.out.println("(d,x,y):"+ "("+d +", "+ x + ", " + y +")");
         }
        x2=1;    x1=0;
