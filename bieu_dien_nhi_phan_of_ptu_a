@@ -15,12 +15,10 @@ void nhap(){
 void bieuDienA(){
 	m= log(p)/log(2)+1;
 	t= (m/w) + 1;
-
 	for(int i=t-1;i>=0;i--){
 		tmp= a / pow(2,i*w);
 		a = a- (tmp*pow(2,i*w)); 
-		printf("\nHe so A[%d]: %d",i,tmp);
-		
+		printf("\nHe so A[%d]: %d",i,tmp);	
 	}
 
 }
