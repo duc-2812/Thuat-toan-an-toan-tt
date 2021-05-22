@@ -9,16 +9,15 @@ int nhap(){
 	 scanf("%d",&w);
 	printf("nhap t: ");
 	 scanf("%d",&t);
-	printf("nhap so phan tu co trong mang: ");
-	 scanf("%d",&n);
+	
 	
 	printf("\nnhap phan tu trong a: ");
-	for(int i=0;i<n;i++){
+	for(int i=0;i<4;i++){
 		scanf("%d",&a[i]);
 		printf("%d  ",a[i]);
 	}
 	printf("\nnhap phan tu trong b: ");
-	for(int i=0;i<n;i++){
+	for(int i=0;i<4;i++){
 		scanf("%d",&b[i]);
 		printf("%d  ",b[i]);
 	}
