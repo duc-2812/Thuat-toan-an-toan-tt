@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    int p, a, u, v, x1, x2;
+    int q, r, x;
+    printf("\nNhap p: ");
+    scanf("%d", &p);
+    printf("\nNhap a: ");
+    scanf("%d", &a);
+    u = a;
+    v = p;
+    x1 = 1;
+    x2 = 0;
+    printf("\n %d^-1 mod %d = ", a, p);
+    while (u !=1)
+    {
+        q = v/u;
+        r = v - q * u;
+        x = x2 - q * x1;
+        v = u;
+        u = r;
+        x2 = x1;
+        x1 = x;
+    }
+    printf("%d mod %d", x1, p);
+    printf("\n\t==============");
+}
