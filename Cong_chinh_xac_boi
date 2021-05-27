@@ -30,12 +30,14 @@ void tinh(){
 		c[i]=a[i]+b[i]+e;
 		if( c[i] > tmp ){
 			c[i]= c[i]-tmp;
+			e=1;
 		printf("\n Voi i= %d thi c=%d, e=%d",(t-1)-i,c[i],e);
-		e=1;
+		
 		}
 		else{
+			e=0;
 			printf("\n Voi i= %d thi c= %d, e=%d",(t-1)-i,c[i],e);
-		e=0;
+		
 		}
 	}	
 }
