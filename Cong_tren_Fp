@@ -1,41 +1,69 @@
 #include <stdio.h>
 #include <math.h>
 
-int p, w, m, t, a[50], b[50], c[50], n;
+// int p, w, m, t, a[50], b[50], c[50], n;
+
+// void nhap()
+// {
+//     printf("\nNhap p: ");
+//     scanf("%d", &p);
+//     printf("Nhap w: ");
+//     scanf("%d", &w);
+//     //	printf("Nhap so phan tu co trong mang: ");
+//     //	scanf("%d",&n);
+
+//     printf("\nCac phan tu trong a:");
+//     for (int i = 0; i < 4; i++)
+//     {
+//         scanf("%d", &a[i]);
+//         printf("% d  ", a[i]);
+//     }
+//     printf("\nCac phan tu trong b:");
+//     for (int i = 0; i < 4; i++)
+//     {
+//         scanf("%d", &b[i]);
+//         printf("% d  ", b[i]);
+//     }
+// }
+ int p,w,m,t,a,b,c[50],A[50],B[50];
 int x, e;
-void nhap()
-{
+ int nhap(){
     printf("\nNhap p: ");
     scanf("%d", &p);
     printf("Nhap w: ");
     scanf("%d", &w);
-    //	printf("Nhap so phan tu co trong mang: ");
-    //	scanf("%d",&n);
-
-    printf("\nCac phan tu trong a:");
-    for (int i = 0; i < 4; i++)
-    {
-        scanf("%d", &a[i]);
-        printf("% d  ", a[i]);
+    printf("\nNhap a: ");
+    scanf("%d", &a);
+    printf("Nhap b: ");
+    scanf("%d", &b);
+}
+int bieudien(){
+    int j=0,h=0;
+    int tmp;
+     m = log(p) / log(2) + 1;
+    t = (m / w) + 1;
+    for(int i=t-1;i>=0;i--){
+        tmp = a / pow(2,i*w);
+        a= a - (tmp* pow(2,i*w));
+        A[j]=tmp;
+        j++;
     }
-    printf("\nCac phan tu trong b:");
-    for (int i = 0; i < 4; i++)
-    {
-        scanf("%d", &b[i]);
-        printf("% d  ", b[i]);
+    for(int i=t-1;i>=0;i--){
+        tmp = b / pow(2,i*w);
+        b= b - (tmp* pow(2,i*w));
+        B[h]=tmp;
+        h++;
     }
 }
-
 void CongTrenFp()
 { // tim (Ep,c)
-    m = log(p) / log(2) + 1;
-    t = (m / w) + 1;
+   
     e = 0; // epsilo
     int tmp = pow(2, w);
     printf("\n  c:");
     for (int i = t - 1; i >= 0; i--)
     {
-        c[i] = a[i] + b[i] + e;
+        c[i] = A[i] + B[i] + e;
         if (c[i] > tmp)
         {
             c[i] = c[i] - tmp;
@@ -96,7 +124,9 @@ void CongTrenFp()
 }
 int main()
 {
-    printf("\n\t================");
+    // 2147483647
+    printf("\n\t=================");
     nhap();
+    bieudien();
     CongTrenFp();
 }
