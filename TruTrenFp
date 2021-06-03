@@ -22,8 +22,8 @@
 //         printf("%d  ", b[i]);
 //     }
 // }
-int p,m,t,w,a,b,c[50],A[50],B[50];
-int e;
+int e,m,w,c[50],A[50],B[50];
+long long p,a,b,t;
 int nhap(){
     printf("\nNhap p: ");
     scanf("%d", &p);
@@ -38,8 +38,8 @@ int nhap(){
 int bieudien(){
     int j=0,h=0;
     int tmp;
-    m= log(p)/ log(2)+1;
-    t=(m/w)+1;
+    m= log(p)/log(2) +1;
+	t=(m/w)+1;
     for(int i=t-1;i>=0;i--){
         tmp= a / pow(2,i*w);
         a = a - (tmp*pow(2,i*w));
@@ -57,8 +57,8 @@ void TruChinhXacBoi()
 {
     e = 0;
     int tmp = pow(2, w);
-    m = log(p) / log(2) + 1;
-    t = (m / w) + 1;
+    m= log(p)/log(2) +1;
+	t=(m/w)+1;
     printf("\nc: ");
     for (int i = t - 1; i >= 0; i--)
     {
@@ -90,10 +90,10 @@ void TruChinhXacBoi()
 }
 void tinh()
 {
-    int x = 0;
+    long long x = 0;
     int newC, tmp;
-    m = log(p) / log(2) + 1;
-    t = (m / w) + 1;
+    m= log(p)/log(2) +1;
+	t=(m/w)+1;
     printf("\nC': ");
     for (int i = 0; i < t; i++)
     {
