@@ -1,32 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 
-// int p, w, m, t, a[50], b[50], c[50], n;
 int x, e;
-// void nhap()
-// {
-//     printf("\nNhap p: ");
-//     scanf("%d", &p);
-//     printf("Nhap w: ");
-//     scanf("%d", &w);
-//     //	printf("Nhap so phan tu co trong mang: ");
-//     //	scanf("%d",&n);
-
-//     printf("\nCac phan tu trong a:");
-//     for (int i = 0; i < 4; i++)
-//     {
-//         scanf("%d", &a[i]);
-//         printf("% d  ", a[i]);
-//     }
-//     printf("\nCac phan tu trong b:");
-//     for (int i = 0; i < 4; i++)
-//     {
-//         scanf("%d", &b[i]);
-//         printf("% d  ", b[i]);
-//     }
-// }
-int  w, m, c[50], A[50], B[50];
-long long p,t,a,b;
+int w, m, c[50], A[50], B[50];
+long long p, t, a, b;
 int nhap()
 {
     printf("\nNhap p: ");
@@ -42,8 +19,8 @@ int bieudien()
 {
     int j = 0, h = 0;
     int tmp;
-    m= ceil(log(p)/log(2));
-	t=ceil(m / w);
+    m = log(p) / log(2) + 1;
+    t = (m / w)+1;
     for (int i = t - 1; i >= 0; i--)
     {
         tmp = a / pow(2, i * w);
@@ -51,7 +28,7 @@ int bieudien()
         A[j] = tmp;
         j++;
     }
-    for (int i = t - 1; i >= 0; i--)
+    for (int i = t - 1; i >= 0; i--)                                   
     {
         tmp = b / pow(2, i * w);
         b = b - (tmp * pow(2, i * w));
@@ -83,42 +60,35 @@ void CongChinhXacBoi()
         printf("%d  ", c[i]);
     }
     printf("\t Voi e=%d", e);
+}
+void tinh(){
     // xet e để tìm c cuối
     long long x = 0; //  x la gia tri c khi chuyen ve so nguyen
-               // chuyển c từ mảng về số tự nhiên để so sánh với p
+                     // chuyển c từ mảng về số tự nhiên để so sánh với p
     for (int i = 0; i < t; i++)
     {
         x = x + c[i] * pow(2, w * (t - 1 - i));
     }
 
-
-    if (e == 1)
+    if (e == 1 || e == 0)
     {
-        // so sanh c vs p de tim ra c' cuoi duoi' dang. mang? nhi. phan
-        int cNew, uoc;
-        cNew = x - p;
-        printf(" \n c' = %d ", cNew);
-        printf(" \nC' :  ");
-        for (int i = t - 1; i >= 0; i--)
+        if (x >= p)
         {
-            uoc = cNew / pow(2, w * i);
-            cNew = cNew - (uoc * pow(2, w * i));
-            printf(" %d", uoc);
+            // so sanh c vs p de tim ra c' cuoi duoi' dang. mang? nhi. phan
+            int cNew, uoc;
+            cNew = x - p;
+            printf(" \n c' = %d ", cNew);
+            printf(" \nC' :  ");
+            for (int i = t - 1; i >= 0; i--)
+            {
+                uoc = cNew / pow(2, w * i);
+                cNew = cNew - (uoc * pow(2, w * i));
+                printf(" %d", uoc);
+            }
         }
     }
-    else if (x >= p)
-    {
-        int cN, uocc;
-        cN = x - p ;
-        printf("\n C':  ");
-        for (int i = t - 1; i >= 0; i--)
-        {
-            uocc = cN / pow(2, w * i);
-            cN = cN - (uocc * pow(2, w * i));
-            printf(" %d", uocc);
-        }
-    }
-    else
+ 
+    else if(e==0 && x<p )
     {
         printf("\n C'= ");
         for (int i = 0; i < t; i++)
@@ -129,10 +99,10 @@ void CongChinhXacBoi()
 }
 int main()
 {
-    // 2147483647
+  
     printf("\n\t=================");
     nhap();
     bieudien();
     CongChinhXacBoi();
-    
+    tinh();
 }
