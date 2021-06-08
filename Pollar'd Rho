@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <math.h>
+
+long long n;
+int uocChung(a, b)
+{
+    long long r;
+    while (b > 0)
+    {
+        r = a % b;
+        a = b;
+        b = r;
+    }
+    return a;
+}
+int main()
+{
+    long long a = 2, b = 2, d;
+    printf("\nNhap n: ");
+    scanf("%lld", &n);
+    while (1)
+    {
+        a = (a * a + 1) % n;
+
+        b = (b * b + 1) % n;
+        b = (b * b + 1) % n;
+        d = uocChung(abs(a - b), n);
+        if (d > 1 && d < n)
+        {
+            printf("%lld", d);
+            break;
+        }
+        if (d == n)
+        {
+        printf("");
+        }
+    }
+}
