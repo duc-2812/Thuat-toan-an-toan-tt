@@ -1,34 +1,51 @@
-import static java.lang.Math.log;
-import java.util.Scanner;
-
+#include <stdio.h>
+#include <math.h>
 /* thuat toan EUCLIDE mở rộng */
-public class thuattoan1 {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Nhap a, b:" );
-        int a= input.nextInt();
-//        System.out.println("Nhap b: ");
-        int b= input.nextInt();
-       int d,x,y,x1,x2,y1,y2,q,r;
-       if(b == 0){
-           d=a;     x=1;    y=0;
-            System.out.println("(d,x,y):"+ "("+d +", "+ x + ", " + y +")");
+int main()
+{
+    int d, x, y, x1, x2, y1, y2, q, r;
+    long long a=0,b=0;
+        while(a<=0 && b<=0){
+            printf("\nNhap a:");
+        scanf("%lld",&a);
+        printf("\nNhap b:");
+        scanf("%lld",&b);
         }
-       x2=1;    x1=0;
-       y1=1;    y2=0;
-       while(b>0) {
-           q= a/b;
-           r=a-q*b;
-           x=x2-q*x1;
-           y=y2-q*y1;
-           a=b;
-           b=r;
-           x2=x1;
-           x1=x;
-           y2=y1;
-           y1=y;
-       }
-       d=a;x=x2;y=y2;
-        System.out.println("(d,x,y):"+ "("+d +", "+ x + ", " + y +")");
+    int tmp =b;
+    if (b == 0)
+    {
+        d = a;
+        x = 1;
+        y = 0;
+        printf("(d,x,y) = (%d,%d,%d)", d, x, y);
     }
+    x2 = 1;
+    x1 = 0;
+    y1 = 1;
+    y2 = 0;
+    while (b > 0)
+    {
+        q = a / b;
+        r = a - q * b;
+        x = x2 - q * x1;
+        y = y2 - q * y1;
+        a = b;
+        b = r;
+        x2 = x1;
+        x1 = x;
+        y2 = y1;
+        y1 = y;
+    }
+    d = a;
+    x = x2;
+    y = y2;
+
+    printf("(d,x,y) = (%d,%d,%d)", d, x, y);
+    printf("\nGCD (a,b) = %d",d);
+    if(x<0){
+        x= x+ tmp;
+        printf("\n a-1 mod b =%d ",x);
+    }
+    printf("\nb^-1 mod a= %d",y);
 }
+
