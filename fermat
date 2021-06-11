@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <math.h>
+
+int n, t, p, a, A, mang[50], k, x = 0;
+
+void nhap()
+{
+    n = 0, t = 0;
+    while (n < 3)
+    {
+        printf("Nhap n: ");
+        scanf("%d", &n);
+    }
+    while (t < 1)
+    {
+        printf("Nhap t: ");
+        scanf("%d", &t);
+    }
+}
+
+int binhPhuong(int m,int v)
+{
+    while (m != 0)
+    {
+        mang[x] = m % 2;
+        m = m / 2;
+        x++;
+    }
+    p = 1;
+    for (int i = x - 1; i >= 0; i--)
+    {
+        A = (p * p) % n;
+        if (mang[i] == 1)
+        {
+            p = (v * A) % n;
+        }
+        else if (mang[i] == 0)
+        {
+            p = A;
+        }
+    }
+    return p;
+ 
+}
+int main()
+{
+    nhap();
+
+    for (int i = 1; i <= t; i++)
+    {
+        a = 2 + rand() % ((n - 2) + 1 - 2);
+        printf("\n a = %d", a);
+         binhPhuong(n - 1,a);
+        if (p != 1)
+        {
+            printf("\n%d - Hop so", n);
+        }
+        else {
+            printf("\n%d -Nguyen to",n);
+        }
+    }
+    
+
+   
+}
