@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    int n;
+    int mang[10000];
+    printf("Nhap n: ");
+    scanf("%d", &n);
+    for (int i = 2; i <= n; i++)
+    {
+        mang[i] = 1;
+    }
+    for (int i = 2; i <= n; i++)
+    {
+        if (mang[i] == 1)
+        {
+            for (int j = 2 * i; j <= n; j += i)
+            {
+                mang[j] = 0;
+            }
+        }
+    }
+    for (int i = 2; i <= n; i++)
+    {
+        if (mang[i] == 1)
+            printf("%4d", i);
+    }
+    return 0;
+}
