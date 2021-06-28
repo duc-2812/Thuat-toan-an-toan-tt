@@ -11,12 +11,22 @@ void nhap()
         printf("Nhap n: ");
         scanf("%d", &n);
     }
+    
+    //  while(t<0){
+    //      printf("Nhap t=");
+    //      scanf("%d",&t);
 
-    while (t < 1)
-    {
-        printf("\nnhap t: ");
-        scanf("%d", &t);
-    }
+    //  }
+    // kiem tra voi xac suat trong doan
+   float p =0.0;
+        while (p <= 0 || p > 1)
+        {
+            printf("nhap p= ");
+            scanf("%f", &p);
+        }
+       
+        t = (log(1-p) / log((float)1/4)) + 1;
+        printf("\nt=%d", t);
 }
 int tim_s(int k){
     int r;
