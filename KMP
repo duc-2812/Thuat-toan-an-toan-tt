@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
+char T[1000], P[1000];
+int f[1000];
+void nhap()
+{
+    printf("Nhap T: ");
+    fgets(T, sizeof(T), stdin);
+    printf("Nhap P: ");
+    fgets(P, sizeof(P), stdin);
+}
+
+void timF()
+{
+    int i = 0, j = -1;
+    f[i] = j;
+    printf(" F= %d", f[i]);
+    while (i < strlen(P) - 2)
+    {
+        while (j >= 0 && P[i] != P[j])
+            j = f[j];
+        i++;
+        j++;
+        f[i] = j;
+        printf("%5d", f[i]);
+    }
+}
+
+void tinhKMP()
+{
+    int i = 0;
+    int j = 0;
+    int d = 0;
+    while (i < strlen(T) - 1)
+    {
+        while (j < strlen(P) - 1)
+        {
+            if (T[i + j] == P[j])
+            {
+                d++;
+                j++;
+            }
+            else
+            {
+                i = i + j - f[j];
+
+                if (f[j] == -1)
+                {
+                    j = 0;
+                    d = 0;
+                }
+                else
+                {
+                    j = f[j];
+                    d = f[j] - 1;
+                }
+            }
+            if (d == strlen(P) - 1)
+            {
+                printf("\nvi tri %d", i);
+            }
+        }
+    }
+    printf("k cos trong chuoi");
+}
+int main()
+{
+    nhap();
+    timF();
+    tinhKMP();
+}
+// gatcgatcacatcatcacgaaaaa
+    // atcacatcatca
