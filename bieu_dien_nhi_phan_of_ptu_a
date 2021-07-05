@@ -1,31 +1,35 @@
 #include<stdio.h>
 #include<math.h>
 
-int m,w,tmp;
-long long p,t,a;
+
+int t,m,w,tmp;
+
+long long p,a;
 
 void nhap(){
-	printf("Nhap W: ");
-	scanf("%d",&w);
-	printf("Nhap p: ");
-	scanf("%lld",&p);
-	printf("Nhap a: ");
-	scanf("%lld",&a);
+    printf("Nhap W: ");
+    scanf("%d",&w);
+    printf("Nhap p: ");
+    scanf("%lld",&p);
+    printf("Nhap a: ");
+    scanf("%lld",&a);
 }
 
-void bieuDienA(){
-	m= ceil(log(p)/log(2));
-	t= ceil(m/w);
-	printf("\nt=%lld",t);
-	for(int i=t-1;i>=0;i--){
-		tmp= a / pow(2,i*w);
-		a = a- (tmp*pow(2,i*w)); 
-		printf("\nHe so A[%d]: %d",i,tmp);	
-	}
-
+void bieuDienA()
+{   
+    int mang[50];
+    m = log(p) / log(2) + 1;
+    t = (m / w) + 1;
+    int tmp;
+    for(int i=t-1;i>=0;i--){
+        tmp=pow(2,i*w);
+       mang[i]=a / tmp;
+        a=a % tmp;
+        printf("%d  ", mang[i]);
+    }    
 }
 int main()
 {
-	nhap();
-	bieuDienA();
-}	
+    nhap();
+    bieuDienA();
+}   
