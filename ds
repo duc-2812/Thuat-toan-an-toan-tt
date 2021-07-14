@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <math.h>
+int x, e;
+int w, m, c[50], A[50], B[50];
+long long p, t, a, b;
+int nhap()
+{
+    printf("\nNhap p: ");
+    scanf("%lld", &p);
+    printf("Nhap w: ");
+    scanf("%d", &w);
+    printf("\nNhap a: ");
+    scanf("%lld", &a);
+    printf("Nhap b: ");
+    scanf("%lld", &b);
+    
+   
+}
+int bieudien()
+{
+    int j = 0, h = 0;
+    int tmp;
+    m = log(p) / log(2) + 1;
+    t = (m / w)+1; 
+    int x=p;
+    int mang[50];
+    printf("\n ma tran P: ");
+
+      for(int i=t-1;i>=0;i--){
+        tmp=pow(2,i*w);
+       mang[i]=x / tmp;
+        x=x % tmp;
+        printf("%d  ", mang[i]);
+    }    
+    for (int i = t - 1; i >= 0; i--)
+    {
+        tmp = a / pow(2, i * w);
+        a = a - (tmp * pow(2, i * w));
+        A[j] = tmp;
+        j++;
+    }
+    for (int i = t - 1; i >= 0; i--)                                   
+    {
+        tmp = b / pow(2, i * w);
+        b = b - (tmp * pow(2, i * w));
+        B[h] = tmp;
+        h++;
+    }
+}
+void CongChinhXacBoi()
+{ // tim (Ep,c)
+
+    e = 0;
+    int tmp = pow(2, w);
+    printf("\n  c:");
+    for (int i = t - 1; i >= 0; i--)
+    {
+        c[i] = A[i] + B[i] + e;
+        if (c[i] > tmp)
+        {
+            c[i] = c[i] - tmp;
+            e = 1;
+        }
+        else
+        {
+            e = 0;
+        }
+    }
+    for (int i = 0; i < t; i++)
+    {
+        printf("%d  ", c[i]);
+    }
+    printf("\t Voi e=%d", e);
+}
+void tinh(){
+    long long x = 0;
+    for (int i = 0; i < t; i++)
+    {
+        x = x + c[i] * pow(2, w * (t - 1 - i));
+    }
+
+    if (e == 1 || e == 0)
+    {
+        if (x >= p)
+        {
+            int cNew, uoc;
+            cNew = x - p;
+            printf(" \n c' = %d ", cNew);
+            printf(" \nC' :  ");
+            for (int i = t - 1; i >= 0; i--)
+            {
+                uoc = cNew / pow(2, w * i);
+                cNew = cNew - (uoc * pow(2, w * i));
+                printf(" %d", uoc);
+            }
+        }
+    }
+    
+    else if(e==0 && x<p )
+    {
+        printf("\n C'= ");
+        for (int i = 0; i < t; i++)
+        {
+            printf("%d  ", c[i]);
+        }
+    }
+}
+int main()
+{
+    printf("\n\t=================");
+    nhap();
+   
+    bieudien(); 
+    CongChinhXacBoi();
+    tinh();
+}
+
