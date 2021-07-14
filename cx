@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <math.h>
+/* thuat toan EUCLIDE mở rộng */
+int main()
+{
+    int d, x, y, x1, x2, y1, y2, q, r;
+    long long a=0,b=0;
+        while(a<=0 && b<=0){
+            printf("\nNhap a:");
+        scanf("%lld",&a);
+        printf("\nNhap b:");
+        scanf("%lld",&b);
+        }
+    int tmp =b;
+    if (b == 0)
+    {
+        d = a;
+        x = 1;
+        y = 0;
+        printf("(d,x,y) = (%d,%d,%d)", d, x, y);
+    }
+    x2 = 1;
+    x1 = 0;
+    y1 = 1;
+    y2 = 0;
+    while (b > 0)
+    {
+        q = a / b;
+        r = a - q * b;
+        x = x2 - q * x1;
+        y = y2 - q * y1;
+        a = b;
+        b = r;
+        x2 = x1;
+        x1 = x;
+        y2 = y1;
+        y1 = y;
+    }
+    d = a;
+    x = x2;
+    y = y2;
+
+    // printf("(d,x,y) = (%d,%d,%d)", d, x, y);
+    printf("\nGCD (a,b) = %d",d);
+    if(d==1){
+        if(x<0){
+        x= x+ tmp;
+        printf("\n a-1 mod b =%d ",x);
+    }
+    printf("\nb^-1 mod a= %d",y);
+    }  
+    else{
+        printf("\nk ton tai nghich dao cua a va b");
+    }
+}
