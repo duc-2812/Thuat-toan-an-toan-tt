@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+int n, bit, t, s, mang[50], A, p, a;
+int k = 0;
+void nhap()
+{
+
+    printf("Nhap bit: ");
+    scanf("%d", &bit);
+    printf("Nhap t=");
+    scanf("%d", &t);
+    
+}
+int tim_s(int k)
+{
+    int r;
+    int x = k - 1;
+    while (r % 2 == 0)
+    {
+        r = x / 2;
+        x = x / 2;
+    }
+    s = log((k - 1) / r) / log(2);
+    return s;
+}
+
+int binhPhuong(int x, int v,int y)
+{
+
+    while (x != 0)
+    {
+        mang[k] = x % 2;
+        x = x / 2;
+        k++;
+    }
+    p = 1;
+    for (int i = k - 1; i >= 0; i--)
+    {
+        A = (p * p) % y;
+        if (mang[i] == 1)
+        {
+            p = (v * A) % y;
+        }
+        else if (mang[i] == 0)
+        {
+            p = A;
+        }
+    }
+    return p;
+}
+int tinh(int k)
+{
+ 
+    tim_s(k);
+    for (int i = 1; i <= t; i++)
+    {
+        a = 2 + rand() % ((k - 2) + 1 - 2);
+        binhPhuong(k - 1, a,k);
+        if (p != 1 && p != (k - 1))
+        {
+            int j = 1;
+            while (j <= (s - 1) && p != (k - 1))
+            {
+                p = p * p % k;
+                if (p == 1)
+                {
+                    printf("hop so");
+                    return 0;
+                }
+                j += 1;
+            }
+            if (p != (k - 1))
+            {
+                printf("hop so");
+                return 0;
+            }
+        }
+        else
+        {
+            printf("nguyen to");
+            return 1;
+        }
+    }
+}
+int main()
+{   nhap();
+    int max = 0, bp;
+    int m, n;
+   
+    for (int i = 0; i < bit; i++)
+    {
+        bp = pow(2, i);
+        max = max + bp;
+    }
+    while (m != 1)
+    {
+        n = 3 + rand() % (max + 1 - 3);
+        printf("%d   ", n);
+        if (n % 2 != 0)
+        {
+            m = tinh(n);
+            if (m == 1)
+            {
+                break;
+            }
+        }
+    }
+    printf("\n%d la so nguyen to", n);
+    return 0;
+}
