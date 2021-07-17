@@ -22,12 +22,12 @@ void bieudien(int x,int mang[50])
 
     m = log(p) / log(2) + 1;
     t = (m / w) + 1;
-    int tmp,j=0;
+    int tmp;
     for(int i=t-1;i>=0;i--){
         tmp=pow(2,i*w);
        mang[i]=x / tmp;
         x=x % tmp;
-        printf("%d  ", mang[i]);
+        // printf("%d  ", mang[i]);
     }    
 }
 void tinh(){
@@ -42,19 +42,22 @@ void tinh(){
     for (int i = 0; i <= t - 1; i++)
     {
         u = 0;
+        int tmp= pow(2,w);
         for (int j = 0; j <= t - 1; j++)
         {
             uv = c[i + j] + A[i]*B[j] + u;
 
-            u = uv / 256;
-            v = uv % 256;
+            u = uv / tmp;//U là chia nguyên 2^W lấy 8 bit đầu
+            v = uv % tmp;//V là chia dư 2^W để lấy W bit sau
+            //thuật toán chia bit
             c[i + j] = v;
         }
         c[i + t] = u;
     }
+    printf("\nC: ");
     for (int i = 2*t-1; i>=0; i--)
     {
-        printf("\nc[%d] = %d", (2*t-1)-i, c[i]);
+        printf(" %5d", c[i]);
     }
 }
 
