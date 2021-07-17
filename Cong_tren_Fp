@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <math.h>
-
 int x, e;
 int w, m, c[50], A[50], B[50];
 long long p, t, a, b;
-int nhap()
+void nhap()
 {
     printf("\nNhap p: ");
     scanf("%lld", &p);
@@ -14,34 +13,28 @@ int nhap()
     scanf("%lld", &a);
     printf("Nhap b: ");
     scanf("%lld", &b);
+    
+   
 }
-int bieudien()
+int bieudien(int x,int mang[50])
 {
-    int j = 0, h = 0;
-    int tmp;
     m = log(p) / log(2) + 1;
-    t = (m / w)+1;
-    for (int i = t - 1; i >= 0; i--)
-    {
-        tmp = a / pow(2, i * w);
-        a = a - (tmp * pow(2, i * w));
-        A[j] = tmp;
-        j++;
-    }
-    for (int i = t - 1; i >= 0; i--)                                   
-    {
-        tmp = b / pow(2, i * w);
-        b = b - (tmp * pow(2, i * w));
-        B[h] = tmp;
-        h++;
+    t = (m / w)+1; 
+    // printf("\n");
+    for(int i=0;i<t;i++){
+        int tmp=pow(2,(t-1-i)*w);
+        mang[i]= x / tmp;
+        x=x%tmp;
+        // printf("%5d ",mang[i]);
     }
 }
 void CongChinhXacBoi()
 { // tim (Ep,c)
-
+    bieudien(a,A);
+    bieudien(b,B);
     e = 0; // epsilo
     int tmp = pow(2, w);
-    printf("\n  c:");
+    printf("\nc:");
     for (int i = t - 1; i >= 0; i--)
     {
         c[i] = A[i] + B[i] + e;
@@ -77,7 +70,7 @@ void tinh(){
             // so sanh c vs p de tim ra c' cuoi duoi' dang. mang? nhi. phan
             int cNew, uoc;
             cNew = x - p;
-            printf(" \n c' = %d ", cNew);
+            printf(" \nc' = %d ", cNew);
             printf(" \nC' :  ");
             for (int i = t - 1; i >= 0; i--)
             {
@@ -87,7 +80,7 @@ void tinh(){
             }
         }
     }
- 
+    
     else if(e==0 && x<p )
     {
         printf("\n C'= ");
@@ -99,10 +92,12 @@ void tinh(){
 }
 int main()
 {
-  
     printf("\n\t=================");
     nhap();
-    bieudien();
+//    int x=p;
+//    int P[50];
+//    printf("\nma tran cuar P:");
+//    bieudien(x,P);
     CongChinhXacBoi();
     tinh();
 }
