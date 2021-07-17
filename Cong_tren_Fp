@@ -20,17 +20,18 @@ int bieudien(int x,int mang[50])
 {
     m = log(p) / log(2) + 1;
     t = (m / w)+1; 
-    // printf("\n");
     for(int i=0;i<t;i++){
         int tmp=pow(2,(t-1-i)*w);
         mang[i]= x / tmp;
         x=x%tmp;
-        // printf("%5d ",mang[i]);
+        printf("%5d ",mang[i]);
     }
 }
 void CongChinhXacBoi()
 { // tim (Ep,c)
+    printf("\nma tra cua A: ");
     bieudien(a,A);
+    printf("\nma tra cua B: ");
     bieudien(b,B);
     e = 0; // epsilo
     int tmp = pow(2, w);
@@ -68,16 +69,11 @@ void tinh(){
         if (x >= p)
         {
             // so sanh c vs p de tim ra c' cuoi duoi' dang. mang? nhi. phan
-            int cNew, uoc;
+            int cNew, CNEW[50];
             cNew = x - p;
             printf(" \nc' = %d ", cNew);
             printf(" \nC' :  ");
-            for (int i = t - 1; i >= 0; i--)
-            {
-                uoc = cNew / pow(2, w * i);
-                cNew = cNew - (uoc * pow(2, w * i));
-                printf(" %d", uoc);
-            }
+            bieudien(cNew,CNEW);
         }
     }
     
