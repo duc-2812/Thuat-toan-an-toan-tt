@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<string.h>
+#include <stdlib.h>
 char T[1000],P[1000];
+int dem=0;
 void nhap(){
     printf("Nhap T: ");
     fgets(T,sizeof(T),stdin);
@@ -11,7 +13,7 @@ int L(char P[],char x){
     for(int i= strlen(P)-1; i>=0;i--){
         if(P[i]==x){
             return i;
-        }
+        } 
     }
     return -1;
 }
@@ -22,6 +24,7 @@ int tinh(char T[],char P[]){
     int j=m-1;
     int min;
     while( i < strlen(T)){
+  
         if(T[i]!=P[j]){
             if( j< 1 + L(P,T[i])){
                 min = j;
@@ -34,20 +37,21 @@ int tinh(char T[],char P[]){
         }
         else{
             if(j==0){
-                return i;
+
+                printf("\nvi tri %d ",i);
+                j=0;
+                dem++;
+
             }
             i--;
             j--;
         }
     }
-    return -1;
 }
 int main(){
     nhap();
-    int x = tinh(T,P);
-    if(x!=-1){
-        printf("vi tri %d",x);
-
-    }
-    else    printf("k co trong chuoi");
+    tinh(T,P);
+    if(dem==0){
+       printf("\nk co trong chuoi");
+    }   
 }
