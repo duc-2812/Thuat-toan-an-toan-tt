@@ -4,6 +4,7 @@
 
 char T[1000], P[1000];
 int f[1000];
+int dem =0;
 void nhap()
 {
     printf("Nhap T: ");
@@ -28,18 +29,16 @@ void timF()
     }
 }
 
-void tinhKMP()
+int tinhKMP()
 {
     int i = 0;
     int j = 0;
-    int d = 0;
     while (i < strlen(T) - 1)
     {
         while (j < strlen(P) - 1)
         {
             if (T[i + j] == P[j])
             {
-                d++;
                 j++;
             }
             else
@@ -49,27 +48,31 @@ void tinhKMP()
                 if (f[j] == -1)
                 {
                     j = 0;
-                    d = 0;
+                 
                 }
                 else
                 {
                     j = f[j];
-                    d = f[j] - 1;
                 }
+                break;
             }
-            if (d == strlen(P) - 1)
+            if (j == strlen(P) - 1)
             {
                 printf("\nvi tri %d", i);
+                j=0;
+                dem++;
+                i = i + (strlen(P)-1);
             }
         }
     }
-    printf("k cos trong chuoi");
 }
 int main()
 {
     nhap();
     timF();
     tinhKMP();
+    if(dem ==0){
+        printf("\nk cos trong chuoi ");
+    }
+    return 0;
 }
-// gatcgatcacatcatcacgaaaaa
-    // atcacatcatca
