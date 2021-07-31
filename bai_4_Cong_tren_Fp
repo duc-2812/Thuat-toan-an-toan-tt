@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <math.h>
+
+int m, w, t, A[50], B[50], c[50];
+long long p, a, b;
+int e;
+
+void nhap()
+{
+    printf("nhap p :");
+    scanf("%lld", &p);
+    printf("nhap w :");
+    scanf("%d", &w);
+    printf("nhap a :");
+    scanf("%lld", &a);
+    printf("nhap b :");
+    scanf("%lld", &b);
+}
+
+void bieuDien(int x, int mang[50])
+{
+    int tmp;
+    m = log(p) / log(2) + 1;
+    t = (m / w) + 1;
+    for (int i = t - 1; i >= 0; i--)
+    {
+        tmp = pow(2, i * w);
+        mang[i] = x / tmp;
+        x = x % tmp;
+        printf("%5d", mang[i]);
+    }
+}
+
+int congChinhXacBoi()
+{
+    printf("\nma tran A: ");
+    bieuDien(a, A);
+    printf("\nma tran B: ");
+    bieuDien(b, B);
+    e = 0;
+    int tmp = pow(2, w);
+    for (int i = 0; i < t; i++)
+    {
+        c[i] = A[i] + B[i] + e;
+        if (c[i] > tmp)
+        {
+            c[i] = c[i] - tmp;
+            e = 1;
+        }
+        else
+        {
+            e = 0;
+        }
+    }
+    printf("\nma tran c: ");
+    for (int i = t - 1; i >= 0; i--)
+    {
+        printf("%5d", c[i]);
+    }
+    return e;
+}
+
+void tinh()
+{
+
+    int cNew, new[50];
+    long long x = 0;
+    for (int i = t - 1; i >= 0; i--)
+    {
+        x = x + (c[i] * pow(2, i * w));
+    }
+    if (e == 1)
+    {
+        cNew = x - p;
+        printf("\nma tran C: ");
+        bieuDien(cNew, new);
+    }
+    else
+    {
+        if (x < p)
+        {
+            printf("\nma tran C: ");
+            bieuDien(x, new);
+        }
+        else
+        {
+            cNew = x - p;
+            printf("\nma tran C: ");
+            bieuDien(cNew, new);
+        }
+    }
+}
+int main()
+{
+    printf("\n\t=================");
+    nhap();
+    congChinhXacBoi();
+    printf("\nvoi e= %d ta co", e);
+    tinh();
+}
+//765432
+//123456
