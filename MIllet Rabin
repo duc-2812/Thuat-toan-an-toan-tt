@@ -1,45 +1,47 @@
+
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
 
-int n , t = 0, s, mang[50], A, p, a;
+int n, t, s, mang[50], A, p, a;
 int k = 0;
 void nhap()
 {
+    n = 0;
+    t = 0;
     while (n < 3)
     {
-        printf("Nhap n: ");
+        printf("nhap n (>=3) = ");
         scanf("%d", &n);
     }
-    
-    //  while(t<0){
-    //      printf("Nhap t=");
-    //      scanf("%d",&t);
 
-    //  }
-    // kiem tra voi xac suat trong doan
-   float p =0.0;
-        while (p <= 0 || p > 1)
-        {
-            printf("nhap p= ");
-            scanf("%f", &p);
-        }
-       
-        t = (log(1-p) / log((float)1/4)) + 1;
-        printf("\nt=%d", t);
-}
-int tim_s(int k){
-    int r;
-    int x =k-1;
-    while(r %2 ==0){
-        r= x / 2;
-        x= x/2;
+    while (t < 1)
+    {
+        printf("nhap t (>=1) = ");
+        scanf("%d", &t);
     }
-    s= log((k-1) / r) / log(2);
-    return s;
-
 }
+int tim_r(int k)
+{
+    int r;
 
+    while (r % 2 == 0)
+    {
+        r = k / 2;
+        k = k / 2;
+    }
+    return r;
+}
+int random(int min, int max)
+{
+    int tg;
+    if (min > max)
+    {
+        tg = min;
+        min = max;
+        max = tg;
+    }
+    return min + rand() % (max + 1 - min);
+}
 int binhPhuong(int x, int v)
 {
 
@@ -64,15 +66,18 @@ int binhPhuong(int x, int v)
     }
     return p;
 }
-void tinh()
+
+int tinh()
 {
-    nhap();
-    tim_s(n);
+
+    int r = tim_r(n);
+    s = log((n - 1) / r) / log(2);
+
     for (int i = 1; i <= t; i++)
     {
-        a = 2 + rand() % ((n - 2) + 1 - 2);
+        a = random(2, n - 2);
         printf("\n voi a= %d thi ", a);
-        binhPhuong(n - 1, a);
+        binhPhuong(r, a);
         if (p != 1 && p != (n - 1))
         {
             int j = 1;
@@ -82,23 +87,23 @@ void tinh()
                 if (p == 1)
                 {
                     printf("hop so");
+                    return 0;
                 }
-                j += 1;
+                j = j + 1;
             }
             if (p != (n - 1))
             {
                 printf("hop so");
+                return 0;
             }
         }
-        else
-        {
-            printf("nguyen to");
-        }
+        printf("nguyen to");
     }
+    
 }
 int main()
 {
-
-    tinh();
+    nhap();
+    int o = tinh();
     return 0;
 }
