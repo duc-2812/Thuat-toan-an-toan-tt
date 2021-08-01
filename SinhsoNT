@@ -16,13 +16,11 @@ void nhap()
 
 int tim_r(int x)
 {
-    int r;
-    while (r % 2 == 0)
+    while (x % 2 == 0)
     {
-        r = x / 2;
         x = x / 2;
     }
-    return r;
+    return x;
 }
 
 int binhPhuong(int x, int v, int y)
@@ -62,7 +60,7 @@ int random(int x, int y)
 }
 int kiemTra(int x)
 {
-    int r = tim_r(x);
+    int r = tim_r(x-1);
     s = log((x - 1) / r) / log(2);
     for (int i = 0; i <= t; i++)
     {
