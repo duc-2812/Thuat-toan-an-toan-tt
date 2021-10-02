@@ -22,3 +22,52 @@ int main(){
         }
     }
 }
+THEM_PHAN_TU(H, M, D)
+{
+    P = MALLOC();
+    P->HSO = H;
+    P->MU = M;
+    If(C != NULL)    // đã có đuôi
+        D->NEXT = P; //gán P vào đuôi
+    Else             // chưa có đuôi
+        C = P;
+    D = P; // nút mới thêm trở thành đuôi
+}
+CONG_DA_THUC(A, B, C)
+{
+    P = A;
+    Q = B;
+    C = NULL;
+    While(P == NULL && Q == NULL)
+        If(P->MU == Q->MU)
+    {
+        H = P->HSO + Q->HSO;
+        If(H != 0)
+            THEM_PHAN_TU(H, P->MU, D);
+        P = P->NEXT;
+        Q = Q->NEXT;
+    }
+    Else If(P->MU > Q->MU)
+    {
+        THEM_PHAN_TU(P->HSO, P->MU, D);
+        P = P->NEXT;
+    }
+    Else
+    {
+        THEM_PHAN_TU(Q->HSO; Q->MU; D);
+        Q = Q->NEXT;
+    }
+    If(Q == NULL) //Danh sách ứng với B(x) đã hết
+        While(P != NULL)
+    {
+        THEM_PHAN_TU(P->HSO, P->MU, D);
+        P = P->NEXT;
+    }
+    Else //Danh sách ứng với A(x) đã hết
+        While(Q != NULL)
+    {
+        THEM_PHAN_TU(Q->HSO, Q->MU, D);
+        Q = Q->NEXT
+    }
+    D->NEXT = NULL;
+}
